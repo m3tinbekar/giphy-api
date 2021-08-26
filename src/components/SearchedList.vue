@@ -34,7 +34,7 @@
 
 <script>
 
-import axios from "axios";
+
 import Navbar from './Navbar.vue';
 export default {
   name: "SearchedList",
@@ -45,19 +45,16 @@ export default {
     };
   },
   methods: {
-    searchedData(search) {
-      search = this.$route.params.query;
-      console.log(search);
-      axios
-        .get(
-          "https://api.giphy.com/v1/gifs/search?api_key=R8JLB8EHXG5I36zhs2VbwZ2UGcRiCUpk&q=" +
-            search +
-            "&limit=25&offset=0&rating=g&lang=en"
-        )
-        .then((res) => {
-          console.log(res);
-          this.searchedGifs = res.data;
-        });
+    searchedData(query) {
+      query = this.$route.params.query;
+      console.log(query);
+      this.$axios.search(query)
+      .then((response) =>{
+        console.log(response)
+        this.searchedGifs = response.data
+      })
+    
+        
     },
     onCopy() {
       this.$swal('Link copied to clipboard!');

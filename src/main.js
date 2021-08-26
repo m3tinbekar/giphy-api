@@ -7,7 +7,9 @@ import "bootstrap";
 import VueClipboard from 'vue-clipboard2'
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import axios from './client/resources/request'
 
+Vue.prototype.$axios = axios
 Vue.use(VueSweetalert2);
 Vue.use(VueClipboard)
 Vue.config.productionTip = false;

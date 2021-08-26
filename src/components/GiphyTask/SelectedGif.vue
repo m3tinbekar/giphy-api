@@ -141,7 +141,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+
 import Navbar from "../Navbar.vue";
 export default {
   name: "SelectedGif",
@@ -157,16 +157,10 @@ export default {
     getSingleData(id) {
       id = this.$route.params.id;
       console.log(id);
-      axios
-        .get(
-          "https://api.giphy.com/v1/gifs/" +
-            id +
-            "?api_key=35w188mVFnTIq01VM4z2zbtBuQ2whRw9"
-        )
+      this.$axios
+      .select(id)
         .then((response) => {
           this.singleData = response.data;
-          console.log(response);
-          console.log(this.singleData.data.images.fixed_height.url);
         });
     },
     onCopy() {

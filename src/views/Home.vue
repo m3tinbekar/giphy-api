@@ -20,9 +20,9 @@
 <script>
 import Preview from "../components/GiphyTask/Preview.vue";
 import Navbar from "../components/Navbar.vue";
-import axios from "axios";
 import Daily from '../components/GiphyTask/Daily.vue';
 import Slider from '../components/Slider.vue';
+
 
 
 export default {
@@ -36,22 +36,16 @@ export default {
   },
   methods: {
     getData() {
-      axios
-        .get(
-          "https://api.giphy.com/v1/gifs/trending?api_key=R8JLB8EHXG5I36zhs2VbwZ2UGcRiCUpk&limit=48&rating=g"
-        )
+      this.$axios
+        .trend()
         .then((response) => {
           this.gifs = response.data;
         });
     },
     dailyData(){
-      var today = new Date();
-      var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
-      axios.get("https://api.giphy.com/v1/gifs/random?api_key=35w188mVFnTIq01VM4z2zbtBuQ2whRw9&tag="+date+"&rating=g")
+      this.$axios.daily()
       .then((response) => {
         this.daily = response.data;
-        console.log(this.daily.data)
-        console.log(date)
 
       })
       

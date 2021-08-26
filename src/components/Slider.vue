@@ -10,9 +10,10 @@
         <div class="carousel-item active">
           <ul>
             <li
-              v-for="gif in firstSlide.data"
+              v-for="(gif,i) in slider.data"
               :key="gif.id"
               class="img-container"
+              v-show="i<5"
             >
               <button @click="gifData(gif.id)" class="sliderButton">
                 <img
@@ -45,7 +46,7 @@
         </div>
         <div class="carousel-item">
           <ul>
-            <li v-for="gif in secondSlide.data" :key="gif.id" class="img-container">
+            <li v-for="(gif,i) in slider.data" :key="gif.id" class="img-container" v-show="i>=5 && i<10">
               <button @click="gifData(gif.id)" class="sliderButton">
                 <img
                   :src="gif.images.fixed_height.url"
@@ -77,7 +78,7 @@
         </div>
         <div class="carousel-item">
           <ul>
-            <li v-for="gif in thirdSlide.data" :key="gif.id" class="img-container">
+            <li v-for="(gif,i) in slider.data" :key="gif.id" class="img-container" v-show="i>=10 && i<15">
               <button @click="gifData(gif.id)" class="sliderButton">
                 <img
                   :src="gif.images.fixed_height.url"
@@ -109,7 +110,7 @@
         </div>
         <div class="carousel-item">
           <ul>
-            <li v-for="gif in fourthSlide.data" :key="gif.id" class="img-container">
+            <li v-for="(gif,i) in slider.data" :key="gif.id" class="img-container" v-show="i>=15 && i<=20">
               <button @click="gifData(gif.id)" class="sliderButton">
                 <img
                   :src="gif.images.fixed_height.url"
@@ -161,55 +162,24 @@
     </div>
   </div>
 </template>
-
 <script>
-import axios from "axios";
 export default {
   components: {},
   data() {
     return {
-      firstSlide: [],
-      secondSlide: [],
-      thirdSlide: [],
-      fourthSlide: [],
+      slider: [],
     };
   },
   methods: {
     getData() {
-      axios
-        .get(
-          "https://api.giphy.com/v1/gifs/trending?api_key=R8JLB8EHXG5I36zhs2VbwZ2UGcRiCUpk&limit=5&rating=g&offset=0"
-        )
+      this.$axios
+        .slider()
         .then((response) => {
-          this.firstSlide = response.data;
-        });
-      axios
-        .get(
-          "https://api.giphy.com/v1/gifs/trending?api_key=R8JLB8EHXG5I36zhs2VbwZ2UGcRiCUpk&limit=5&rating=g&offset=5"
-        )
-        .then((response) => {
-          this.secondSlide = response.data;
-        });
-      axios
-        .get(
-          "https://api.giphy.com/v1/gifs/trending?api_key=R8JLB8EHXG5I36zhs2VbwZ2UGcRiCUpk&limit=5&rating=g&offset=10"
-        )
-        .then((response) => {
-          this.thirdSlide = response.data;
-        });
-        axios
-        .get(
-          "https://api.giphy.com/v1/gifs/trending?api_key=R8JLB8EHXG5I36zhs2VbwZ2UGcRiCUpk&limit=5&rating=g&offset=15"
-        )
-        .then((response) => {
-          this.fourthSlide = response.data;
+          this.slider = response.data;
         });
     },
     gifData(id) {
-
-
       console.log(id);
-
        this.$router.push("/selected/"+id)
     },
     onCopy() {
@@ -221,18 +191,13 @@ export default {
   },
 };
 </script>
-
 <style>
 .d-block {
   width: 150px !important;
   height: 150px !important;
 }
-
 .sliderButton {
   border-style: none;
   background: none;
-  
-  
 }
-
 </style>
