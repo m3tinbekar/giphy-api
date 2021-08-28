@@ -5,7 +5,7 @@
       <div class="row">
         <div
           class="card"
-          style="width: 40rem; background: #121119; font-color: white"
+          style="width: 250px!important; background: #121119; font-color: white;margin-top:50px"
         >
           <img
             :src="singleData.data.images.fixed_height.url"
@@ -14,7 +14,7 @@
           />
           <div class="card-body">
             <h5 class="card-title" style="color: white">
-              {{ singleData.data.title }}
+              {{ singleData.data.title | capitalize}}
             </h5>
             <p class="card-text" style="color: white">
               {{ singleData.data.import_datetime }}
@@ -190,10 +190,20 @@ export default {
     this.getSingleData();
 
   },
+  filters: {
+  capitalize: function (value) {
+
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
+},
 };
 </script>
 <style>
 .card {
-  margin-left: 25%;
+margin-left: auto;
+margin-right: auto;
+
 }
 </style>

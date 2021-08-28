@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <ul>
-        <li v-for="gif in gifs.data" :key="gif.id" class="img-container">
+        <li v-for="gif in gifs.data" :key="gif.id" class="img-container" style="margin-left:20px">
           <button @click="gifData(gif.id)" class="copyButton"><img :src="gif.images.fixed_height.url" alt="" class="image" /></button>
           <div class="middle">
             <div>

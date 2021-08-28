@@ -3,8 +3,8 @@
     <div class="container">
       <div class="row">
         <div>
-          <ul>
-            <li class="img-container" style="margin-left:38%;margin-right:38%">
+          <ul style="justify-content: center;display: flex;">
+            <li class="img-container">
               <button @click="gifData(daily.data.id)" class="dailyButton">
               <img
                 :src="daily.data.images.fixed_height.url"

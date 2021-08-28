@@ -4,11 +4,11 @@
       id="carouselExampleFade"
       class="carousel slide carousel-fade"
       data-bs-ride="carousel"
-      style="margin-left:10%;margin-right:10%"
+      style="margin-left:auto;margin-right:auto"
     >
-      <div class="carousel-inner" style="margin-left:55px">
+      <div class="carousel-inner" style="margin-left:auto;margin-right:auto">
         <div class="carousel-item active">
-          <ul>
+          <ul style="justify-content: center;display: flex;" > 
             <li
               v-for="(gif,i) in slider.data"
               :key="gif.id"
@@ -45,7 +45,7 @@
           </ul>
         </div>
         <div class="carousel-item">
-          <ul>
+          <ul  style="justify-content: center;display: flex;">
             <li v-for="(gif,i) in slider.data" :key="gif.id" class="img-container" v-show="i>=5 && i<10">
               <button @click="gifData(gif.id)" class="sliderButton">
                 <img
@@ -77,7 +77,7 @@
           </ul>
         </div>
         <div class="carousel-item">
-          <ul>
+          <ul  style="justify-content: center;display: flex;">
             <li v-for="(gif,i) in slider.data" :key="gif.id" class="img-container" v-show="i>=10 && i<15">
               <button @click="gifData(gif.id)" class="sliderButton">
                 <img
@@ -109,7 +109,7 @@
           </ul>
         </div>
         <div class="carousel-item">
-          <ul>
+          <ul  style="justify-content: center;display: flex;">
             <li v-for="(gif,i) in slider.data" :key="gif.id" class="img-container" v-show="i>=15 && i<=20">
               <button @click="gifData(gif.id)" class="sliderButton">
                 <img
